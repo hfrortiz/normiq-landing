@@ -1,0 +1,375 @@
+<!doctype html>
+<!--
+  ============================================================================
+  NORMIQ — Demonstração visual (screenshots reais da app)
+  ============================================================================
+  Substitui, para já, o vídeo de demonstração (ver marketing/video-tutorial-script.md).
+  Quando o vídeo estiver gravado, esta página pode manter-se como "modo texto/imagens"
+  alternativo, ou ser substituída pelo embed do vídeo na landing.
+
+  Imagens em marketing/landing/demo/*.png — referenciadas com caminho relativo para
+  funcionar tanto em file:// (duplo-clique) como alojada num servidor.
+  Sem pedidos externos: sem CDNs, sem fontes web. Tudo inline.
+  ============================================================================
+-->
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demonstração — NORMIQ | Biblioteca de Minutas</title>
+  <meta name="description" content="Percurso completo do NORMIQ em screenshots reais: login, procedimentos, novo procedimento, revisão campo-a-campo, exportação DOCX/PDF, auditoria, utilizadores e licenciamento.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' role='img' aria-label='NORMIQ'%3E%3Cdefs%3E%3ClinearGradient id='nq' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232e6bff'/%3E%3Cstop offset='1' stop-color='%2300d4ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='2' y='2' width='60' height='60' rx='16' fill='url(%23nq)'/%3E%3Cpath d='M20 45V19h4.6l14.8 18.3V19H44v26h-4.6L24.6 26.7V45z' fill='%23fff'/%3E%3Ccircle cx='47.5' cy='17.5' r='3.4' fill='%23fff'/%3E%3Ccircle cx='47.5' cy='17.5' r='6.2' fill='none' stroke='%23fff' stroke-opacity='0.45' stroke-width='1.3'/%3E%3C/svg%3E">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      /* Paleta NORMIQ (tema claro) */
+      --primary: #2E6BFF;
+      --primary-dark: #2556CC;
+      --primary-deep: #0B1220;
+      --primary-tint: rgba(46,107,255,.08);
+      --secondary: #00D4FF;
+      --accent: #7C5CFF;
+      --accent-dark: #694ED9;
+      --ink: #0B1220;
+      --ink-soft: #5A6B85;
+      --paper: #ffffff;
+      --paper-warm: #f4f7fc;
+      --line: #e2e8f2;
+      --serif: Georgia, "Times New Roman", "Iowan Old Style", serif;
+      --sans: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --shadow: 0 1px 2px rgba(11,18,32,.06), 0 8px 28px rgba(11,18,32,.09);
+      --shadow-lg: 0 4px 10px rgba(11,18,32,.10), 0 22px 48px rgba(11,18,32,.16);
+      --grad-brand: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      color: var(--ink);
+      background: var(--paper-warm);
+      line-height: 1.6;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { font-family: var(--serif); line-height: 1.15; color: var(--primary-deep); font-weight: 700; }
+    h1 { font-size: clamp(2rem, 5vw, 2.9rem); letter-spacing: -.01em; }
+    h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin-bottom: .5em; }
+    p { margin-bottom: 1em; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--primary); }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---- Header ---- */
+    header.site {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,.95); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; max-width: 980px; margin: 0 auto; padding: 0 24px; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo strong { font-family: var(--serif); font-size: 1.3rem; color: var(--primary-deep); }
+    .logo .ia { background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .logo span.tag { font-size: .7rem; color: var(--ink-soft); border-left: 1px solid var(--line); padding-left: 10px; }
+    @media (max-width: 560px) { .logo span.tag { display: none; } }
+    .back-link { font-size: .92rem; font-weight: 600; text-decoration: none; color: var(--ink-soft); display: flex; align-items: center; gap: 6px; }
+    .back-link:hover { color: var(--primary); }
+
+    /* ---- Intro ---- */
+    .intro { padding: 56px 0 24px; text-align: center; }
+    .kicker {
+      display: inline-block; font-size: .76rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 12px;
+    }
+    .intro .lead { font-size: 1.1rem; color: var(--ink-soft); max-width: 42em; margin: 0 auto 8px; }
+    .progress-nav {
+      display: flex; flex-wrap: wrap; gap: 6px 10px; justify-content: center;
+      margin-top: 26px; font-size: .82rem;
+    }
+    .progress-nav a {
+      text-decoration: none; color: var(--ink-soft); background: #fff;
+      border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px;
+    }
+    .progress-nav a:hover { color: var(--primary); border-color: var(--primary); }
+
+    /* ---- Scene sections ---- */
+    .scene { padding: 44px 0; border-top: 1px solid var(--line); }
+    .scene .wrap {
+      display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.35fr);
+      gap: 40px; align-items: center;
+    }
+    .scene.reverse .wrap { direction: rtl; }
+    .scene.reverse .wrap > * { direction: ltr; }
+    @media (max-width: 860px) {
+      .scene .wrap { grid-template-columns: 1fr; }
+      .scene.reverse .wrap { direction: ltr; }
+    }
+    .scene-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 999px; background: var(--primary);
+      color: #fff; font-weight: 700; font-size: .95rem; margin-bottom: 14px;
+      font-family: var(--serif);
+    }
+    .scene-text h2 { margin-bottom: .4em; }
+    .scene-text p { color: var(--ink-soft); }
+    .scene-text .caption-lede { color: var(--ink); font-weight: 600; }
+    .frame {
+      background: #fff; border-radius: 14px; padding: 10px;
+      box-shadow: var(--shadow-lg); border: 1px solid var(--line);
+    }
+    .frame img { border-radius: 8px; display: block; }
+    .frame figcaption {
+      font-size: .78rem; color: var(--ink-soft); text-align: center; padding-top: 8px;
+    }
+    /* Cena sem screenshot (ver comentário na secção 8). */
+    .frame-nota { background: var(--primary-tint); border-style: dashed; box-shadow: none; padding: 26px; }
+    .frame-nota figcaption { font-size: .92rem; padding-top: 0; line-height: 1.7; }
+
+    /* ---- DOCX/PDF callout (no dedicated screenshot; textual scene) ---- */
+    .callout-scene { background: var(--primary-tint); }
+    .callout-scene .wrap { grid-template-columns: 1fr; text-align: center; }
+    .callout-icons { display: flex; gap: 18px; justify-content: center; margin: 18px 0 6px; }
+    .callout-icons .pill {
+      display: inline-flex; align-items: center; gap: 8px; background: #fff;
+      border: 1px solid var(--line); border-radius: 10px; padding: 10px 18px;
+      font-weight: 700; color: var(--primary-deep); box-shadow: var(--shadow);
+    }
+
+    /* ---- Final CTA ---- */
+    .cta-final {
+      background: var(--primary-deep); color: #fff; text-align: center; padding: 64px 0;
+    }
+    .cta-final h2 { color: #fff; }
+    .cta-final p { color: rgba(255,255,255,.85); max-width: 40em; margin: 0 auto 26px; }
+    .btn {
+      display: inline-block; padding: 14px 30px; border-radius: 8px;
+      font-weight: 700; font-size: 1rem; text-decoration: none;
+      border: 2px solid transparent; cursor: pointer; transition: all .15s ease;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); }
+    .btn-outline { border-color: rgba(255,255,255,.5); color: #fff; margin-left: 10px; }
+    .btn-outline:hover { background: rgba(255,255,255,.12); }
+
+    footer.site {
+      background: var(--primary-deep); color: rgba(255,255,255,.65);
+      text-align: center; padding: 22px 0; font-size: .85rem;
+    }
+    footer.site a { color: rgba(255,255,255,.85); }
+  </style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <a class="logo" href="index.html" aria-label="NORMIQ — voltar à página inicial">
+      <svg width="30" height="30" viewBox="0 0 64 64" role="img" aria-label="NORMIQ">
+        <defs><linearGradient id="nq-header" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2e6bff"/><stop offset="1" stop-color="#00d4ff"/></linearGradient></defs>
+        <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#nq-header)"/>
+        <path d="M20 45V19h4.6l14.8 18.3V19H44v26h-4.6L24.6 26.7V45z" fill="#fff"/>
+        <circle cx="47.5" cy="17.5" r="3.4" fill="#fff"/>
+        <circle cx="47.5" cy="17.5" r="6.2" fill="none" stroke="#fff" stroke-opacity="0.45" stroke-width="1.3"/>
+      </svg>
+      <strong>NORM<span class="ia">IQ</span></strong>
+      <span class="tag">Biblioteca de Minutas</span>
+    </a>
+    <a class="back-link" href="index.html">&larr; Voltar à página inicial</a>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <div class="wrap">
+      <span class="kicker">Demonstração</span>
+      <h1>Um percurso real pelo NORMIQ, ecrã a ecrã.</h1>
+      <p class="lead">
+        Estes são screenshots reais da aplicação (dados de demonstração) — o mesmo percurso que um
+        departamento de Compras segue todos os dias: criar o procedimento, gerar a primeira minuta,
+        rever campo a campo e exportar o documento final.
+      </p>
+      <p class="lead" style="font-size:.92rem;">
+        O vídeo de demonstração (guião em <code>marketing/video-tutorial-script.md</code>) vai substituir
+        ou complementar esta página assim que estiver gravado.
+      </p>
+      <nav class="progress-nav" aria-label="Saltar para secção">
+        <a href="#s1">1. Login</a>
+        <a href="#s2">2. Procedimentos</a>
+        <a href="#s3">3. Novo procedimento</a>
+        <a href="#s4">4. Revisão</a>
+        <a href="#s5">5. DOCX/PDF</a>
+        <a href="#s6">6. Auditoria</a>
+        <a href="#s7">7. Utilizadores</a>
+        <a href="#s8">8. Licença</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- 1. Login -->
+  <section class="scene" id="s1">
+    <div class="wrap">
+      <div class="scene-text">
+        <span class="scene-num">1</span>
+        <h2>Cada instituição entra com as suas credenciais</h2>
+        <p class="caption-lede">A aplicação corre dentro da entidade — os dados nunca saem para uma cloud externa.</p>
+        <p>A página de acesso identifica logo a instituição (aqui, um hospital de exemplo). Sem contas
+        pessoais soltas: o acesso é gerido pelo administrador da organização, com papéis distintos por
+        utilizador (leitor, operador, revisor, administrador).</p>
+      </div>
+      <figure class="frame">
+        <img src="demo/01-login.png" alt="Página de login do NORMIQ, com a marca à esquerda e o formulário de acesso à direita" loading="lazy" width="1366" height="850">
+        <figcaption>Página <code>/login</code> — antes de autenticar.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 2. Procedimentos -->
+  <section class="scene reverse" id="s2">
+    <div class="wrap">
+      <div class="scene-text">
+        <span class="scene-num">2</span>
+        <h2>Todos os procedimentos, com o estado das minutas à vista</h2>
+        <p class="caption-lede">Cada procedimento agrupa as suas minutas e mostra o que já está feito.</p>
+        <p>A lista inicial mostra o tipo de procedimento, a tipologia do objeto, o departamento e quantas
+        minutas já foram criadas em cada um. Pesquisa e filtros por tipo tornam fácil encontrar um
+        procedimento específico quando a lista cresce.</p>
+      </div>
+      <figure class="frame">
+        <img src="demo/02-procedimentos.png" alt="Lista de procedimentos e minutas, com colunas de tipo, tipologia, departamento, entidade e documentos" loading="lazy" width="1366" height="850">
+        <figcaption>Página inicial — lista de procedimentos.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 3. Novo procedimento -->
+  <section class="scene" id="s3">
+    <div class="wrap">
+      <div class="scene-text">
+        <span class="scene-num">3</span>
+        <h2>Só se pede o que a primeira minuta precisa</h2>
+        <p class="caption-lede">Escreve o preço base e o IVA — o NORMIQ calcula o total sozinho.</p>
+        <p>O formulário inicial pede apenas os dados essenciais: tipo de procedimento, número, objeto,
+        preço base e IVA. O total é calculado em tempo real (aqui, 125.000 € + 23% IVA = 153.750,00 €)
+        — sem erros de conta. As restantes minutas do procedimento são adicionadas mais tarde,
+        reaproveitando estes mesmos dados.</p>
+      </div>
+      <figure class="frame">
+        <img src="demo/03-novo-procedimento.png" alt="Formulário de novo procedimento preenchido com número, objeto, preço base, IVA e total calculado automaticamente" loading="lazy" width="1366" height="850">
+        <figcaption>Formulário "Novo Procedimento" — campos preenchidos, total calculado (não submetido).</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 4. Revisão campo-a-campo — o ecrã-chave -->
+  <section class="scene reverse" id="s4">
+    <div class="wrap">
+      <div class="scene-text">
+        <span class="scene-num">4</span>
+        <h2>Revisão campo-a-campo — o momento-chave</h2>
+        <p class="caption-lede">Nada passa despercebido: confirma, corrige ou marca em falta, campo a campo.</p>
+        <p>O documento aparece ao centro com cada campo assinalado a laranja (por confirmar). O painel
+        lateral mostra o detalhe do campo selecionado e as ações rápidas — Confirmar, Corrigir, Marcar
+        em falta. A barra de progresso ("0/15 campos validados") acompanha o avanço da revisão até a
+        minuta ficar pronta. É o oposto de reler um Word de trinta páginas à procura de gralhas.</p>
+      </div>
+      <figure class="frame">
+        <img src="demo/04-revisao.png" alt="Ecrã de revisão documental do procedimento CPI-2026-001, com o documento ao centro, campos assinalados e painel de detalhe do campo à direita" loading="lazy" width="1366" height="850">
+        <figcaption>Revisão do procedimento de exemplo <code>CPI-2026-001</code> — documento + painel de campos.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 5. DOCX / PDF — nota textual (sem screenshot dedicado) -->
+  <section class="scene callout-scene" id="s5">
+    <div class="wrap">
+      <span class="scene-num" style="margin:0 auto 14px;">5</span>
+      <h2>Um clique gera o documento final</h2>
+      <p class="caption-lede" style="max-width:38em;margin:0 auto;">O que revês é exatamente o que sai — em Word e em PDF, com a formatação da minuta oficial.</p>
+      <div class="callout-icons" aria-hidden="true">
+        <span class="pill">📄 DOCX</span>
+        <span class="pill">⬇ PDF</span>
+      </div>
+      <p style="max-width:38em;margin:12px auto 0;color:var(--ink-soft);">
+        Os botões "DOCX" e "PDF" ficam sempre visíveis no topo do documento em revisão (ver secção
+        anterior). A minuta seguinte reaproveita automaticamente os dados já confirmados — o preço, o
+        objeto, o júri — para que se escreva uma vez e se use em todo o procedimento.
+      </p>
+    </div>
+  </section>
+
+  <!-- 6. Auditoria -->
+  <section class="scene" id="s6">
+    <div class="wrap">
+      <div class="scene-text">
+        <span class="scene-num">6</span>
+        <h2>Tudo fica registado</h2>
+        <p class="caption-lede">Histórico de ações por utilizador, com data, IP e detalhe do que mudou.</p>
+        <p>Cada login, alteração de campo, criação de utilizador ou mudança de papel gera um evento de
+        auditoria. Filtros por data e por tipo de ação permitem encontrar rapidamente o que aconteceu —
+        essencial para entidades públicas com deveres de transparência e rastreabilidade.</p>
+      </div>
+      <figure class="frame">
+        <img src="demo/05-auditoria.png" alt="Página de auditoria com tabela de eventos: data, ação, utilizador, detalhe e IP" loading="lazy" width="1366" height="850">
+        <figcaption>Página <code>/audit</code> — registo de auditoria.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 7. Utilizadores -->
+  <section class="scene reverse" id="s7">
+    <div class="wrap">
+      <div class="scene-text">
+        <span class="scene-num">7</span>
+        <h2>Papéis distintos, por organização</h2>
+        <p class="caption-lede">Leitor, operador, revisor e administrador — cada um só faz o que o seu papel permite.</p>
+        <p>A gestão de utilizadores é centralizada: o administrador atribui papéis por organização
+        (departamento), ativa ou desativa contas e repõe palavras-passe sem depender de suporte
+        externo. Os dados de cada organização ficam segregados entre si.</p>
+      </div>
+      <figure class="frame">
+        <img src="demo/06-utilizadores.png" alt="Página de utilizadores com tabela de nome, email, estado, organizações e papéis, e ações de editar, repor palavra-passe e papéis" loading="lazy" width="1366" height="850">
+        <figcaption>Página <code>/users</code> — gestão de utilizadores.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 8. Licença -->
+  <section class="scene" id="s8">
+    <div class="wrap">
+      <div class="scene-text">
+        <span class="scene-num">8</span>
+        <h2>Instalação on-premise, licença clara</h2>
+        <p class="caption-lede">A aplicação instala-se na vossa infraestrutura — sem depender de terceiros para continuar a funcionar.</p>
+        <p>A página de licenciamento mostra o estado da licença (válida, em graça ou bloqueada), o
+        cliente, o identificador e os módulos incluídos. É só de leitura: a renovação é feita substituindo
+        o ficheiro de licença fornecido pela HCJ Partners.</p>
+      </div>
+      <!-- Screenshot de /license removido em 2026-09-08: a licença da instalação de
+           demonstração está emitida em nome de uma entidade que NÃO é cliente, e o ecrã
+           mostra esse nome. Repor a imagem só depois de reemitir a licença de demo com
+           um titular neutro (ver tools/license-admin). -->
+      <figure class="frame frame-nota">
+        <figcaption>Página <code>/license</code> — estado da licença, módulos incluídos e validade,
+        só de leitura. Mostramo-la na demonstração ao vivo.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="cta-final">
+    <div class="wrap">
+      <h2>Quer ver isto a funcionar com os dados da sua instituição?</h2>
+      <p>Marcamos uma demonstração de 30 minutos, sem compromisso, com um procedimento real do vosso
+      departamento de Compras.</p>
+      <a class="btn btn-primary" href="index.html#contacto">Pedir demonstração</a>
+      <a class="btn btn-outline" href="index.html">Voltar à página inicial</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>NORMIQ — Biblioteca de Minutas · desenvolvido por HCJ Partners</p>
+  </div>
+</footer>
+
+</body>
+</html>
